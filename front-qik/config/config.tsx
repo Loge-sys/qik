@@ -1,0 +1,1 @@
+export const BASE_URL = ' https://cdn-dev.preoday.com/challenge'
