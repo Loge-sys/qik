@@ -2,9 +2,10 @@ import { useEffect } from "react";
 import { BASE_URL } from '../config/config'
 import axios, { AxiosResponse } from 'axios';
 import { useDispatch } from "react-redux";
-import { addConfig } from "./redux/sliceConfig";
+import { addConfig } from "./redux/Config/sliceConfig";
 import Menu from "./views/Menu";
 import Header from "./components/Header";
+import configMockToError from '../config/mocks/configMockToError.json'
 
 interface WebSettings {
   bannerImage: string;
@@ -26,7 +27,7 @@ const App = () => {
       const res: AxiosResponse<{ webSettings: WebSettings }> = await axios.get(`${BASE_URL}/venue/9`);
       dispatch(addConfig(res.data.webSettings || {}))
     } catch (error) {
-      console.log(error)
+      dispatch(addConfig(configMockToError.webSettings || {}));
     } 
   }
 

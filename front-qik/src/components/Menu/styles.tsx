@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { IconImageProps } from './interface';
+import { IconImageProps, FoodContainerProps } from './interface';
+import { COLORS } from '../../../config/config';
 
 export const Container = styled.div`
   display: flex;
@@ -8,7 +9,6 @@ export const Container = styled.div`
   flex-direction: column;
   background: #fff;
   box-shadow: 0px 2px 14px 0px rgba(0, 0, 0, 0.14);
-
   @media (max-width: 768px) {
     width: 100%;
     box-shadow: none;
@@ -20,14 +20,21 @@ export const FoodsContainer = styled.div`
   flex-direction: row;
 `;
 
-const FoodContainer = styled.div`
+const FoodContainer = styled.div<FoodContainerProps>`
   display: flex;
   flex-direction: column;
-  padding: 20px 0px 24px 16px;
+  padding: 20px 16px 24px 16px;
   align-items: center;
   gap: 12px;
   margin-right: 12px;
   cursor: pointer;
+  border-bottom: ${props => props.selected ? `2px solid ${props.color}` : 'none' };
+  margin-left: 10px;
+
+  @media (max-width: 768px) {
+    padding: 14px;
+    margin-left: 5px;
+  }
 `;
 
 const IconImage = styled.img<IconImageProps>`
@@ -35,17 +42,15 @@ const IconImage = styled.img<IconImageProps>`
   display: flex;
   width: 74px;
   height: 74px;
-  border-radius: 50px;
-  border: 2px solid ${props => props.color};
+  border-radius: 50%;
+  border: ${props => props.selected ? `2px solid ${props.color}` : 'none' };
   padding: 2px;
   overflow: hidden;
 `;
 
 export const FoodText = styled.span`
-  color: var(--Copy-Main, #121212);
+  color: ${COLORS.main};
   text-align: center;
-  font-feature-settings: 'clig' off, 'liga' off;
-  font-family: Roboto;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -54,10 +59,11 @@ export const FoodText = styled.span`
 `;
 
 
-export const Foods = ({ image, name, color, click }: { image: string; name: string, color: string, click: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void  }) => {
+export const Foods = ({ image, name, color, click, selected } : 
+  { image: string; name: string, color: string, click: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void, selected: boolean  }) => {
   return (
-    <FoodContainer onClick={click}>
-      <IconImage src={image} alt={name} color={color} />
+    <FoodContainer onClick={click} color={color} selected={selected} >
+      <IconImage src={image} alt={name} color={color} selected={selected} />
       <FoodText>{name}</FoodText>
     </FoodContainer>
   );

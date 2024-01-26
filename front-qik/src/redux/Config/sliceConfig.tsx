@@ -1,13 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-
-interface Config {
-    bannerImage: string;
-    backgroundColour: string;
-    primaryColour: string;
-    primaryColourHover: string;
-    navBackgroundColour: string;
-}
+import { Config, ConfigState } from './interface'
 
 const INITIAL_STATE: Config [] = []
 const sliceConfig = createSlice({
@@ -24,6 +16,6 @@ export default sliceConfig.reducer
 
 export const { addConfig } = sliceConfig.actions
 
-export const useConfig = (state: any) => {
+export const useConfig = (state: ConfigState) => {
     return state.config as Config[]
 }

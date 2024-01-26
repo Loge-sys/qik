@@ -1,21 +1,54 @@
 import styled from 'styled-components';
-import { Row, RowProps } from 'antd';
-import { HTMLAttributes } from 'react';
+import { HeaderImageProps } from './interface'
+import MenuIcon from '../../assets/icons/menu.png'
 
-interface RowContainerProps extends RowProps {
-  color?: string;
+export const TextContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  width: 42%;
+
+  @media (min-width: 768px) and (max-width: 1300px) {
+    width: 70%;
 }
+`;
 
-interface HeaderImageProps extends HTMLAttributes<HTMLImageElement> {
-  img?: string;
-}
+export const UnderlineContainer = styled.div`
+  display: flex;
+  border-bottom: 2px solid #FFF;
+`;
 
-export const RowContainer = styled(Row)<RowContainerProps>`
+export const MenuContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   background: ${props => props.color};
-  padding: 10px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+
+`;
+
+export const MobileMenuIcon = styled.img.attrs(() => ({
+  src: MenuIcon,
+}))`
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  right: 16px;
+`;
+
+export const MobileMenuContainer = styled.div`
+  display: none;
+  background: ${props => props.color};
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    padding: 14px 16px;
+    align-items: center;
+    gap: 8px;
+  }
+
 `;
 
 export const Container = styled.div`
@@ -24,7 +57,7 @@ export const Container = styled.div`
 `;
 
 export const Text = styled.span`
-  color: var(--White, #FFF);
+  color: #FFF;
   text-align: center;
   font-size: 20px;
   font-style: normal;
@@ -32,11 +65,28 @@ export const Text = styled.span`
   line-height: normal;
   letter-spacing: 0.1px;
   text-transform: uppercase;
+  padding: 10px;
+  width: 200px;
+  cursor: pointer;
 `;
+
+export const MobileText = styled.span`
+  color: #FFF;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.75px;
+`;
+
 
 export const HeaderImage = styled.img.attrs<HeaderImageProps>(props => ({
   src: props.img
 }))<HeaderImageProps>`
   object-fit: cover;
   display: flex;
+  @media (max-width: 768px) {
+    height: 150px;
+  }
+
 `;
