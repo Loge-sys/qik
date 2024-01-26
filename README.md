@@ -6,6 +6,7 @@ React Hooks and Redux were utilized with React.
 To run the application:
 - Clone the project
 - Navigate to the front-quik folder: cd front-qik/
+- Execute the command: npm install
 - Execute the command: npm run dev
 
 
