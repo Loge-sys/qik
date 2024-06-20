@@ -1,3 +1,4 @@
+// DropDownItem.tsx
 import { useState } from 'react';
 import { Container, DropDownHeader, Card } from './styles';
 import { DropDownItemProps } from './interface';
@@ -9,7 +10,7 @@ import { useSelector } from 'react-redux';
 const DropDownItem: React.FC<DropDownItemProps> = ({ foods, selectedItemIndex }) => {
     const [show, setShow] = useState(true);
     const [isModalOpen, setModalOpen] = useState(false);
-    const [foodDetail, setFoodDetail] = useState<Item>();
+    const [foodDetail, setFoodDetail] = useState<Item | undefined>(undefined);
     const basketList = useSelector(useBasket);
 
     const handleClick = () => {
@@ -22,23 +23,24 @@ const DropDownItem: React.FC<DropDownItemProps> = ({ foods, selectedItemIndex })
     };
 
     const renderFoodCard = () => {
-      if (show && foods[selectedItemIndex]) {
-        return foods[selectedItemIndex].items.map((food, index) => {
-          const itemCountInBasket = basketList.filter(item => item.id === food.id).length;
-          return (
-              <Card
-                key={index}
-                image={food?.images?.[0]?.image || ''}
-                title={food.name}
-                description={food?.description}
-                price={food.price}
-                click={() => handleClickItem(food)}
-                itemCountInBasket={itemCountInBasket}
-              />
-          );
-        });
-      }
+        if (show && foods[selectedItemIndex]) {
+            return foods[selectedItemIndex].items.map((food, index) => {
+                const itemCountInBasket = basketList.filter(item => item.id === food.id).length;
+                return (
+                    <Card
+                        key={index}
+                        image={food?.images?.[0]?.image || ''}
+                        title={food.name}
+                        description={food?.description}
+                        price={food.price}
+                        click={() => handleClickItem(food)}
+                        itemCountInBasket={itemCountInBasket}
+                    />
+                );
+            });
+        }
     };
+
     return (
         <Container>
             <DropDownHeader click={handleClick} show={show} foods={foods[selectedItemIndex]} />
