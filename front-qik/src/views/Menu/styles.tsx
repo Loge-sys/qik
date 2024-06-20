@@ -47,7 +47,7 @@ const BasketButtonContainer = styled.div`
         align-items: center;
         justify-content: center;
         height: 100px;
-        backdrop-filter: blur(4px); /* Ajuste o valor conforme necessário */
+        backdrop-filter: blur(4px);
     }
 `;
 
