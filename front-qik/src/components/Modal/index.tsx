@@ -17,7 +17,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, foodDetail }) => {
   const image = foodDetail.images && foodDetail.images.length > 0 ? foodDetail.images[0]?.image : '';
   const title = foodDetail.name || '';
   const description = foodDetail.description || '';
-  const modifiers = foodDetail.modifiers?.[0] || '';
+  const modifiers = foodDetail.modifiers?.[0] || undefined;
   const price = foodDetail.price;
 
   const handleClickItem = (selectedItem: Size | ModifiersItems) => {
@@ -30,11 +30,12 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, foodDetail }) => {
 
   const handleClickAdd = () => {
     if (selectedSize) {
-      const updatedFoodDetail = { ...foodDetail, size: selectedSize };
+      const updatedFoodDetail = { ...foodDetail, size: selectedSize, modifiers: foodDetail.modifiers || [] };
       dispatch(addBasket(updatedFoodDetail));
       setSelectedSize(null);
     } else {
-      dispatch(addBasket(foodDetail));
+      const updatedFoodDetail = { ...foodDetail, modifiers: foodDetail.modifiers || [] };
+      dispatch(addBasket(updatedFoodDetail));
     }
     onClose();
   };

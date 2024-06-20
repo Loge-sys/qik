@@ -4,11 +4,11 @@ interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
     foodDetail: Item | undefined;
-  }
+}
 
-  interface ModalContentProps {
+interface ModalContentProps {
     hasimage: number;
-  }
+}
 
 interface DetailModalProps {
   image?: string;
@@ -17,10 +17,10 @@ interface DetailModalProps {
   modifiers?: Modifiers;
   click: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   color: string;
-  handlesize: (item: ModifiersItems) => void; // Ajuste aqui
+  handlesize: (item: ModifiersItems) => void;
   handleadd: React.MouseEventHandler<HTMLButtonElement>;
   firstprice: number;
   sizeprice?: number;
 }
 
- export type { ModalProps, ModalContentProps, DetailModalProps }
+export type { ModalProps, ModalContentProps, DetailModalProps }

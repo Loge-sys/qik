@@ -15,6 +15,7 @@ interface ModifiersItems {
   availabilityType: string;
   qty?: number;
   available: boolean;
+  description: string;
 }
 
 interface Modifiers {

@@ -1,4 +1,3 @@
-// DropDownItem.tsx
 import { useState } from 'react';
 import { Container, DropDownHeader, Card } from './styles';
 import { DropDownItemProps } from './interface';
